@@ -16,8 +16,24 @@ return {
     end, { desc = "Harpoon add file" })
 
     vim.keymap.set("n", "<leader>h", function()
-      harpoon.ui:toggle_quick_menu(harpoon:list())
+      harpoon.ui:toggle_quick_menu(harpoon:list(), {
+        ui_nav_wrap = true,
+        title = " Harpoon ",
+        border = "rounded",
+        title_pos = "center",
+      })
     end, { desc = "Harpoon menu" })
+
+    -- Number keys to select files when harpoon menu is open
+    harpoon:extend({
+      UI_CREATE = function(cx)
+        for i = 1, 5 do
+          vim.keymap.set("n", tostring(i), function()
+            harpoon:list():select(i)
+          end, { buffer = cx.bufnr, desc = "Harpoon select " .. i })
+        end
+      end,
+    })
 
     vim.keymap.set("n", "<leader>1", function()
       harpoon:list():select(1)
