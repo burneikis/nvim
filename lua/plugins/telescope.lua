@@ -30,7 +30,12 @@ return {
             ["<C-j>"] = actions.move_selection_next,
             ["<C-k>"] = actions.move_selection_previous,
             ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+          },
+          n = {
+            ["j"] = actions.move_selection_next,
+            ["k"] = actions.move_selection_previous,
             ["<Esc>"] = actions.close,
+            ["q"] = actions.close,
           },
         },
       },
