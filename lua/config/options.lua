@@ -24,7 +24,7 @@ opt.scrolloff = 8
 opt.sidescrolloff = 8
 
 -- Behavior
-opt.clipboard = "unnamedplus"
+-- clipboard handled by keymaps (yank to clipboard, delete to register only)
 opt.mouse = "a"
 opt.splitright = true
 opt.splitbelow = true
