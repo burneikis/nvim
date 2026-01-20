@@ -22,6 +22,7 @@ return {
           { icon = " ", key = "n", desc = "New File",        action = ":ene | startinsert" },
           { icon = " ", key = "t", desc = "Find Text",       action = ":lua Snacks.dashboard.pick('live_grep')" },
           { icon = " ", key = "g", desc = "Lazy Git",        action = ":LazyGit" },
+          { icon = " ", key = "e", desc = "Oil Explorer",    action = ":Oil" },
           { icon = " ", key = "r", desc = "Recent Files",    action = ":lua Snacks.dashboard.pick('oldfiles')" },
           { icon = " ", key = "c", desc = "Config",          action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
           { icon = " ", key = "s", desc = "Restore Session", action = ":lua require('persistence').load()" },
