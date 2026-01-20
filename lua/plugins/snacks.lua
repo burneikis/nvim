@@ -3,7 +3,15 @@ return {
 	priority = 1000,
 	lazy = false,
 	opts = {
-		lazygit = { enabled = true },
+		lazygit = {
+			enabled = true,
+			config = {
+				os = {
+					edit = 'nvim --server $NVIM --remote-send "<cmd>lua Snacks.lazygit():hide(); vim.cmd.edit(\'{{filename}}\')<cr>"',
+					editAtLine = 'nvim --server $NVIM --remote-send "<cmd>lua Snacks.lazygit():hide(); vim.cmd.edit(\'{{filename}}\'); vim.cmd(\'normal! {{line}}G\')<cr>"',
+				},
+			},
+		},
 	},
 	keys = {
 		{
