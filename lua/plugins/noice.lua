@@ -24,8 +24,7 @@ return {
       view_warn = "mini",
     },
     popupmenu = {
-      enabled = true,
-      backend = "nui",
+      enabled = false,
     },
     lsp = {
       progress = {
