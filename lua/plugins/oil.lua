@@ -13,9 +13,10 @@ return {
 				show_hidden = true,
 			},
 			float = {
+        border = "rounded",
 				padding = 2,
-				max_width = 80,
-				max_height = 30,
+				max_width = 0.7,
+				max_height = 0.6,
 			},
 			keymaps = {
 				["g?"] = "actions.show_help",
@@ -55,6 +56,6 @@ return {
 		})
 
 		vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
-		vim.keymap.set("n", "<leader>e", "<cmd>Oil --float<cr>", { desc = "Open file explorer (float)" })
+		vim.keymap.set("n", "<leader>e", "<cmd>Oil --float<cr>", { desc = "Oil" })
 	end,
 }

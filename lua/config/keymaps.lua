@@ -58,3 +58,10 @@ map("n", "<leader>yF", function()
 	vim.fn.setreg("+", filepath)
 	print("Yanked absolute file path: " .. filepath)
 end, { desc = "Yank absolute file path" })
+
+-- QuickFix
+map("n", "<leader>co", "<cmd>copen<cr>", { desc = "Open QuickFix" })
+map("n", "<leader>cc", "<cmd>cclose<cr>", { desc = "Close QuickFix" })
+map("n", "<leader>cn", "<cmd>cnext<cr>", { desc = "Next QuickFix item" })
+map("n", "<leader>cp", "<cmd>cprev<cr>", { desc = "Previous QuickFix item" })
+

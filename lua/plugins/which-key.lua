@@ -20,6 +20,7 @@ return {
 			{ "<leader>c", group = "code" },
 			{ "<leader>x", group = "diagnostics" },
 			{ "<leader>q", group = "quit/session" },
+      { "<leader>c", group = "quickfix" },
 			{
 				"<leader>1",
 				desc = function()
