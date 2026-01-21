@@ -64,9 +64,9 @@ return {
 					map("gi", vim.lsp.buf.implementation, "Go to implementation")
 					map("gr", vim.lsp.buf.references, "Go to references")
 					map("K", vim.lsp.buf.hover, "Hover documentation")
-					map("<leader>ca", vim.lsp.buf.code_action, "Code action")
-					map("<leader>cr", vim.lsp.buf.rename, "Rename symbol")
-					map("<leader>cd", vim.diagnostic.open_float, "Line diagnostics")
+					-- map("<leader>ca", vim.lsp.buf.code_action, "Code action")
+					-- map("<leader>cr", vim.lsp.buf.rename, "Rename symbol")
+					-- map("<leader>cd", vim.diagnostic.open_float, "Line diagnostics")
 					map("[d", vim.diagnostic.goto_prev, "Previous diagnostic")
 					map("]d", vim.diagnostic.goto_next, "Next diagnostic")
 				end,

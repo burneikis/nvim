@@ -45,7 +45,7 @@ map("n", "Y", '"+y$', { desc = "Yank to end of line to clipboard" })
 map("n", "yy", '"+yy', { desc = "Yank line to clipboard" })
 
 -- Return to dashboard
-map("n", "<leader>d", function() Snacks.dashboard() end, { desc = "Open dashboard" })
+map("n", "<leader>d", function() Snacks.dashboard() end, { desc = "Dashboard" })
 
 -- Yank file path (relative on f, absolute on F)
 map("n", "<leader>yf", function()
