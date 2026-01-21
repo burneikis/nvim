@@ -1,3 +1,14 @@
+local function harpoon_desc(n)
+	return function()
+		local ok, harpoon = pcall(require, "harpoon")
+		if ok then
+			local item = harpoon:list().items[n]
+			if item then return vim.fn.fnamemodify(item.value, ":t") end
+		end
+		return "Harpoon file " .. n
+	end
+end
+
 return {
 	"folke/which-key.nvim",
 	event = "VeryLazy",
@@ -17,69 +28,15 @@ return {
 		spec = {
 			{ "<leader>f", group = "find" },
 			{ "<leader>g", group = "git" },
-			{ "<leader>c", group = "code" },
+			{ "<leader>c", group = "quickfix" },
 			{ "<leader>x", group = "diagnostics" },
 			{ "<leader>q", group = "quit/session" },
-      { "<leader>c", group = "quickfix" },
-			{
-				"<leader>1",
-				desc = function()
-					local ok, harpoon = pcall(require, "harpoon")
-					if ok then
-						local item = harpoon:list().items[1]
-						if item then return vim.fn.fnamemodify(item.value, ":t") end
-					end
-					return "Harpoon file 1"
-				end,
-			},
-			{
-				"<leader>2",
-				desc = function()
-					local ok, harpoon = pcall(require, "harpoon")
-					if ok then
-						local item = harpoon:list().items[2]
-						if item then return vim.fn.fnamemodify(item.value, ":t") end
-					end
-					return "Harpoon file 2"
-				end,
-			},
-			{
-				"<leader>3",
-				desc = function()
-					local ok, harpoon = pcall(require, "harpoon")
-					if ok then
-						local item = harpoon:list().items[3]
-						if item then return vim.fn.fnamemodify(item.value, ":t") end
-					end
-					return "Harpoon file 3"
-				end,
-			},
-			{
-				"<leader>4",
-				desc = function()
-					local ok, harpoon = pcall(require, "harpoon")
-					if ok then
-						local item = harpoon:list().items[4]
-						if item then return vim.fn.fnamemodify(item.value, ":t") end
-					end
-					return "Harpoon file 4"
-				end,
-			},
-			{
-				"<leader>5",
-				desc = function()
-					local ok, harpoon = pcall(require, "harpoon")
-					if ok then
-						local item = harpoon:list().items[5]
-						if item then return vim.fn.fnamemodify(item.value, ":t") end
-					end
-					return "Harpoon file 5"
-				end,
-			},
-			{
-				"<leader>y",
-				group = "yank file path",
-			},
+			{ "<leader>1", desc = harpoon_desc(1) },
+			{ "<leader>2", desc = harpoon_desc(2) },
+			{ "<leader>3", desc = harpoon_desc(3) },
+			{ "<leader>4", desc = harpoon_desc(4) },
+			{ "<leader>5", desc = harpoon_desc(5) },
+			{ "<leader>y", group = "yank file path" },
 		},
 	},
 }

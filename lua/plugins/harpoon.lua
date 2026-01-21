@@ -11,7 +11,7 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Harpoon add file" })
+		vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Harpoon add" })
 
 		vim.keymap.set("n", "<leader>h", function()
 			harpoon.ui:toggle_quick_menu(harpoon:list(), {
@@ -20,7 +20,7 @@ return {
 				border = "rounded",
 				title_pos = "center",
 			})
-		end, { desc = "Harpoon menu" })
+		end, { desc = "Harpoon" })
 
 		-- Number keys to select files when harpoon menu is open
 		harpoon:extend({
