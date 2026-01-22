@@ -12,9 +12,9 @@ return {
 			view_options = {
 				show_hidden = true,
 			},
-			float = {
-        border = "rounded",
-				padding = 2,
+		float = {
+				border = "rounded",
+			padding = 2,
 				max_width = 0.7,
 				max_height = 0.6,
 			},
@@ -56,6 +56,6 @@ return {
 		})
 
 		vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
-		vim.keymap.set("n", "<leader>e", "<cmd>Oil --float<cr>", { desc = "Oil" })
+		vim.keymap.set("n", "<leader>o", "<cmd>Oil --float<cr>", { desc = "Oil" })
 	end,
 }

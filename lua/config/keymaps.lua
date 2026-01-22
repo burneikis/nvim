@@ -25,10 +25,6 @@ map("v", ">", ">gv")
 -- Clear search highlight
 map("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "Clear search highlight" })
 
--- Save and quit
-map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save file" })
-map("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
-
 -- Buffer navigation
 map("n", "[b", "<cmd>bprevious<cr>", { desc = "Previous buffer" })
 map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
@@ -64,4 +60,3 @@ map("n", "<leader>co", "<cmd>copen<cr>", { desc = "Open QuickFix" })
 map("n", "<leader>cc", "<cmd>cclose<cr>", { desc = "Close QuickFix" })
 map("n", "<leader>cn", "<cmd>cnext<cr>", { desc = "Next QuickFix item" })
 map("n", "<leader>cp", "<cmd>cprev<cr>", { desc = "Previous QuickFix item" })
-
