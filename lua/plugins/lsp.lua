@@ -34,10 +34,25 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"lua_ls",
-					"ts_ls",
+					"vtsls",
 					"pyright",
+					"eslint",
 				},
 				automatic_installation = true,
+			})
+		end,
+	},
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		dependencies = { "mason.nvim" },
+		config = function()
+			require("mason-tool-installer").setup({
+				ensure_installed = {
+					-- Formatters
+					"stylua",
+					"prettier",
+					"black",
+				},
 			})
 		end,
 	},
@@ -57,18 +72,31 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("lsp_attach", { clear = true }),
 				callback = function(event)
+					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					local map = function(keys, func, desc) vim.keymap.set("n", keys, func, { buffer = event.buf, desc = desc }) end
 
-					map("gd", vim.lsp.buf.definition, "Go to definition")
+					map("gd", function() require("telescope.builtin").lsp_definitions() end, "Go to definition")
 					map("gD", vim.lsp.buf.declaration, "Go to declaration")
-					map("gi", vim.lsp.buf.implementation, "Go to implementation")
-					map("gr", vim.lsp.buf.references, "Go to references")
+					map("gi", function() require("telescope.builtin").lsp_implementations() end, "Go to implementation")
+					map("gr", function() require("telescope.builtin").lsp_references() end, "Go to references")
 					map("K", vim.lsp.buf.hover, "Hover documentation")
 					-- map("<leader>ca", vim.lsp.buf.code_action, "Code action")
 					-- map("<leader>cr", vim.lsp.buf.rename, "Rename symbol")
 					-- map("<leader>cd", vim.diagnostic.open_float, "Line diagnostics")
 					map("[d", vim.diagnostic.goto_prev, "Previous diagnostic")
 					map("]d", vim.diagnostic.goto_next, "Next diagnostic")
+
+					-- ESLint auto-fix on save
+					if client and client.name == "eslint" then
+						vim.api.nvim_create_autocmd("BufWritePre", {
+							buffer = event.buf,
+							callback = function()
+								if vim.fn.exists(":EslintFixAll") > 0 then
+									vim.cmd("EslintFixAll")
+								end
+							end,
+						})
+					end
 				end,
 			})
 
@@ -91,7 +119,7 @@ return {
 				},
 			})
 
-			vim.lsp.config("ts_ls", {
+			vim.lsp.config("vtsls", {
 				capabilities = capabilities,
 			})
 
@@ -99,8 +127,12 @@ return {
 				capabilities = capabilities,
 			})
 
+			vim.lsp.config("eslint", {
+				capabilities = capabilities,
+			})
+
 			-- Enable configured servers
-			vim.lsp.enable({ "lua_ls", "ts_ls", "pyright" })
+			vim.lsp.enable({ "lua_ls", "vtsls", "pyright", "eslint" })
 
 			-- Diagnostic signs
 			local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
