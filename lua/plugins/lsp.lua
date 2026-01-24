@@ -52,6 +52,7 @@ return {
 					"stylua",
 					"prettier",
 					"black",
+					"isort",
 				},
 			})
 		end,
