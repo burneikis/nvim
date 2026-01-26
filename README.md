@@ -96,12 +96,6 @@ My nvim config
 
 ## Key Bindings
 
-### Window Navigation
-| Key | Action |
-|-----|--------|
-| `<C-h/j/k/l>` | Move between windows |
-| `<C-Up/Down/Left/Right>` | Resize windows |
-
 ### Telescope (Find)
 | Key | Action |
 |-----|--------|
