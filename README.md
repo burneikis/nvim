@@ -1,31 +1,8 @@
-# Neovim Configuration Summary
+# burneikis/nvim
 
-## Overview
-
-A modern, Lua-first Neovim configuration optimized for web development (JavaScript/TypeScript, Angular) with Python support. Uses lazy loading and follows a clean modular structure.
+My nvim config
 
 **Leader Key**: `<Space>`
-
----
-
-## Structure
-
-```
-~/.config/nvim/
-├── init.lua                    # Entry point
-├── lazy-lock.json              # Plugin lock file
-├── stylua.toml                 # Lua formatter config
-├── .luarc.json                 # Lua LSP config
-└── lua/
-    ├── config/                 # Core configuration
-    │   ├── lazy.lua            # Plugin manager setup
-    │   ├── options.lua         # Vim options
-    │   ├── keymaps.lua         # Global keymaps
-    │   └── autocmds.lua        # Autocommands
-    └── plugins/                # Plugin configs (one file per plugin)
-```
-
----
 
 ## Plugin Manager
 
@@ -33,7 +10,7 @@ A modern, Lua-first Neovim configuration optimized for web development (JavaScri
 
 ---
 
-## Plugins (32 total)
+## Plugins
 
 ### Completion & Snippets
 | Plugin | Purpose |
