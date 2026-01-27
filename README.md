@@ -1,6 +1,6 @@
 # burneikis/nvim
 
-My nvim config
+My nvim config.
 
 **Leader Key**: `<Space>`
 
