@@ -1,41 +1,36 @@
 return {
-	"zbirenbaum/copilot.lua",
-	cmd = "Copilot",
-	event = "InsertEnter",
-	config = function()
-		require("copilot").setup({
-			panel = {
-				enabled = false,
-			},
-			suggestion = {
-				enabled = true,
-				auto_trigger = true,
-				debounce = 75,
-				keymap = {
-					accept = false,
-					accept_word = "<M-w>",
-					accept_line = "<M-e>",
-					next = "<M-]>",
-					prev = "<M-[>",
-					dismiss = "<M-c>",
-				},
-			},
-			filetypes = {
-				yaml = true,
-				markdown = true,
-				help = false,
-				gitcommit = false,
-				gitrebase = false,
-				["."] = false,
-			},
-		})
+  -- Override copilot.lua to use inline suggestions only
+  {
+    "zbirenbaum/copilot.lua",
+    opts = {
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        keymap = {
+          accept = "<Tab>",
+          accept_word = "<M-w>",
+          accept_line = "<M-e>",
+          next = "<M-]>",
+          prev = "<M-[>",
+          dismiss = "<M-c>",
+        },
+      },
+      panel = {
+        enabled = false,
+      },
+    },
+  },
 
-		vim.keymap.set("i", "<Tab>", function()
-			if require("copilot.suggestion").is_visible() then
-				require("copilot.suggestion").accept()
-			else
-				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
-			end
-		end, { desc = "Accept Copilot suggestion or insert tab" })
-	end,
+  -- Remove copilot from blink.cmp sources (LazyVim's default completion)
+  {
+    "saghen/blink.cmp",
+    optional = true,
+    opts = {
+      sources = {
+        providers = {
+          copilot = { enabled = false },
+        },
+      },
+    },
+  },
 }
