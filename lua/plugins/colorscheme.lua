@@ -7,6 +7,8 @@ return {
 		transparent = true,
 		terminal_colors = true,
 		styles = {
+			sidebars = "transparent",
+			floats = "transparent",
 			comments = { italic = true },
 			keywords = { italic = true },
 		},
