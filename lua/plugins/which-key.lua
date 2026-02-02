@@ -33,6 +33,8 @@ return {
 			{ "<leader>3", hidden = true },
 			{ "<leader>4", hidden = true },
 			{ "<leader>5", hidden = true },
+			{ "<leader>9", group = "99" },
+			{ "<leader>b", group = "buffer" },
 			{ "<leader>y", group = "yank file path" },
 		},
 	},
