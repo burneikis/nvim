@@ -34,6 +34,7 @@ return {
 			{ "<leader>4", desc = harpoon_desc(4) },
 			{ "<leader>5", desc = harpoon_desc(5) },
 			{ "<leader>t", group = "toggle" },
+			{ "<leader>s", group = "split" },
 			{ "<leader>9", group = "99" },
 			{ "<leader>b", group = "buffer" },
 			{ "<leader>y", group = "yank file path" },

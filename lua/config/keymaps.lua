@@ -6,6 +6,13 @@ map("n", "<C-j>", "<C-w>j", { desc = "Move to lower window" })
 map("n", "<C-k>", "<C-w>k", { desc = "Move to upper window" })
 map("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
+-- Window splits
+map("n", "<leader>sh", "<cmd>split<cr>", { desc = "Split window horizontally" })
+map("n", "<leader>sv", "<cmd>vsplit<cr>", { desc = "Split window vertically" })
+map("n", "<leader>sc", "<cmd>close<cr>", { desc = "Close current split" })
+map("n", "<leader>so", "<cmd>only<cr>", { desc = "Close other splits" })
+map("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
+
 -- Resize windows
 map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
 map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
