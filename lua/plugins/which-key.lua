@@ -36,11 +36,21 @@ return {
 			{ "<leader>t", group = "toggle" },
 			{
 				"<leader>tw",
-				desc = function() return "Toggle line wrap [" .. (vim.wo.wrap and "on" or "off") .. "]" end,
+				desc = function()
+					local base = "Toggle line wrap"
+					local state = "[" .. (vim.wo.wrap and "on" or "off") .. "]"
+					local padding = 25 - #base - #state
+					return base .. string.rep(" ", math.max(padding, 1)) .. state
+				end,
 			},
 			{
 				"<leader>tf",
-				desc = function() return "Toggle autoformat [" .. (vim.g.disable_autoformat and "off" or "on") .. "]" end,
+				desc = function()
+					local base = "Toggle autoformat"
+					local state = "[" .. (vim.g.disable_autoformat and "off" or "on") .. "]"
+					local padding = 25 - #base - #state
+					return base .. string.rep(" ", math.max(padding, 1)) .. state
+				end,
 			},
 			{ "<leader>s", group = "split" },
 			{ "<leader>9", group = "99" },
