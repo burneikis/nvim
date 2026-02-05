@@ -43,6 +43,10 @@ map({ "n", "v" }, "y", '"+y', { desc = "Yank to clipboard" })
 map("n", "Y", '"+y$', { desc = "Yank to end of line to clipboard" })
 map("n", "yy", '"+yy', { desc = "Yank line to clipboard" })
 
+-- Toggle options
+map("n", "<leader>tw", "<cmd>set wrap!<cr>", { desc = "Toggle line wrap" })
+map("n", "<leader>tf", function() vim.g.disable_autoformat = not vim.g.disable_autoformat end, { desc = "Toggle autoformat" })
+
 -- Return to dashboard
 map("n", "<leader>d", function() Snacks.dashboard() end, { desc = "Dashboard" })
 
