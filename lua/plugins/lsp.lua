@@ -140,14 +140,16 @@ return {
 			-- Enable configured servers
 			vim.lsp.enable({ "lua_ls", "vtsls", "angularls", "pyright", "eslint" })
 
-			-- Diagnostic signs
-			local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-			for type, icon in pairs(signs) do
-				local hl = "DiagnosticSign" .. type
-				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-			end
-
+			-- Diagnostic configuration
 			vim.diagnostic.config({
+				signs = {
+					text = {
+						[vim.diagnostic.severity.ERROR] = " ",
+						[vim.diagnostic.severity.WARN] = " ",
+						[vim.diagnostic.severity.HINT] = " ",
+						[vim.diagnostic.severity.INFO] = " ",
+					},
+				},
 				virtual_text = {
 					prefix = "●",
 				},
