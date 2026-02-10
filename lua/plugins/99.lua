@@ -6,8 +6,8 @@ return {
 		local cwd = vim.uv.cwd()
 
 		-- Ensure tmp directory exists for 99 plugin
-		local tmp_dir = cwd .. "/tmp"
-		vim.fn.mkdir(tmp_dir, "p")
+		-- local tmp_dir = cwd .. "/tmp"
+		-- vim.fn.mkdir(tmp_dir, "p")
 		local basename = vim.fs.basename(cwd)
 
 		local Providers = require("99.providers")
