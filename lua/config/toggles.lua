@@ -28,6 +28,63 @@ map("n", "<leader>ti", function()
 
 	print("Trouble inline diagnostics " .. (vim.g.disable_trouble_inline and "disabled" or "enabled"))
 end)
+map("n", "<leader>tm", function()
+	local gs = package.loaded.gitsigns
+	if not gs then
+		vim.notify("gitsigns not loaded", vim.log.levels.WARN)
+		return
+	end
+
+	if vim.g.gitsigns_merge_base then
+		gs.reset_base(true)
+		vim.g.gitsigns_merge_base = false
+		vim.notify("Gitsigns base: reset to index (default)")
+	else
+		local merge_base = vim.fn.systemlist("git merge-base HEAD main")[1]
+		if merge_base and merge_base ~= "" then
+			gs.change_base(merge_base, true)
+			vim.g.gitsigns_merge_base = true
+			vim.notify("Gitsigns base: merge-base with main (" .. merge_base:sub(1, 7) .. ")")
+		else
+			vim.notify("Could not determine merge-base", vim.log.levels.WARN)
+		end
+	end
+end)
+map("n", "<leader>td", function()
+	local gs = package.loaded.gitsigns
+	if not gs then
+		vim.notify("gitsigns not loaded", vim.log.levels.WARN)
+		return
+	end
+
+	if vim.wo.diff then
+		vim.cmd("diffoff!")
+		for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+			local buf = vim.api.nvim_win_get_buf(win)
+			local name = vim.api.nvim_buf_get_name(buf)
+			if name:match("^gitsigns://") then
+				vim.api.nvim_win_close(win, true)
+			end
+		end
+		vim.g.gitsigns_diff_open = false
+		vim.notify("Diff view closed")
+	else
+		if vim.g.gitsigns_merge_base then
+			local merge_base = vim.fn.systemlist("git merge-base HEAD main")[1]
+			if merge_base and merge_base ~= "" then
+				gs.diffthis(merge_base)
+				vim.notify("Diff view: merge-base (" .. merge_base:sub(1, 7) .. ")")
+			else
+				vim.notify("Could not determine merge-base", vim.log.levels.WARN)
+				return
+			end
+		else
+			gs.diffthis()
+			vim.notify("Diff view: index")
+		end
+		vim.g.gitsigns_diff_open = true
+	end
+end)
 
 M.keymaps = {
 	{
@@ -43,6 +100,14 @@ M.keymaps = {
 		desc = toggle_desc("Trouble inline", function()
 			return not vim.g.disable_trouble_inline
 		end),
+	},
+	{
+		"<leader>tm",
+		desc = toggle_desc("Merge-base signs", function() return vim.g.gitsigns_merge_base end),
+	},
+	{
+		"<leader>td",
+		desc = toggle_desc("Diff view", function() return vim.g.gitsigns_diff_open end),
 	},
 }
 
