@@ -64,9 +64,9 @@ return {
 				-- Show files changed relative to merge-base
 				local merge_base = vim.fn.systemlist("git merge-base HEAD main")[1]
 				if merge_base and merge_base ~= "" then
-					builtin.git_commits({
-						prompt_title = "Changed Files (vs merge-base)",
-						git_command = { "git", "diff", "--name-only", merge_base },
+					builtin.find_files({
+						prompt_title = "Changed Files (vs merge-base " .. merge_base:sub(1, 7) .. ")",
+						find_command = { "git", "diff", "--name-only", merge_base },
 					})
 				else
 					vim.notify("Could not determine merge-base", vim.log.levels.WARN)
