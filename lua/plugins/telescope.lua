@@ -59,6 +59,23 @@ return {
 		vim.keymap.set("n", "<leader>fc", builtin.commands, { desc = "Commands" })
 		vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "Diagnostics" })
 		vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, { desc = "Document symbols" })
-		vim.keymap.set("n", "<leader>fg", builtin.git_status, { desc = "Git status" })
+		vim.keymap.set("n", "<leader>fg", function()
+			if vim.g.gitsigns_merge_base then
+				-- Show files changed relative to merge-base
+				local merge_base = vim.fn.systemlist("git merge-base HEAD main")[1]
+				if merge_base and merge_base ~= "" then
+					builtin.git_commits({
+						prompt_title = "Changed Files (vs merge-base)",
+						git_command = { "git", "diff", "--name-only", merge_base },
+					})
+				else
+					vim.notify("Could not determine merge-base", vim.log.levels.WARN)
+					builtin.git_status()
+				end
+			else
+				-- Default behavior: show working tree status
+				builtin.git_status()
+			end
+		end, { desc = "Git status" })
 	end,
 }
