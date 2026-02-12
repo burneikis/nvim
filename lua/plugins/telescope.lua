@@ -59,5 +59,6 @@ return {
 		vim.keymap.set("n", "<leader>fc", builtin.commands, { desc = "Commands" })
 		vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "Diagnostics" })
 		vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, { desc = "Document symbols" })
+		vim.keymap.set("n", "<leader>fg", builtin.git_status, { desc = "Git status" })
 	end,
 }
