@@ -74,9 +74,8 @@ return {
 							finder = finders.new_oneshot_job({ "git", "diff", "--name-only", merge_base }),
 							sorter = conf.file_sorter({}),
 							previewer = previewers.new_termopen_previewer({
-								get_command = function(entry)
-									return { "git", "diff", merge_base, "--", entry.value }
-								end,
+								title = "Git File Diff Preview",
+								get_command = function(entry) return { "git", "--no-pager", "diff", merge_base, "--", entry.value } end,
 							}),
 						})
 						:find()
