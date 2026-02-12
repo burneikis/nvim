@@ -10,6 +10,10 @@ return {
 	config = function()
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
+		local pickers = require("telescope.pickers")
+		local finders = require("telescope.finders")
+		local conf = require("telescope.config").values
+		local previewers = require("telescope.previewers")
 
 		telescope.setup({
 			defaults = {
@@ -61,13 +65,21 @@ return {
 		vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, { desc = "Document symbols" })
 		vim.keymap.set("n", "<leader>fg", function()
 			if vim.g.gitsigns_merge_base then
-				-- Show files changed relative to merge-base
+				-- Show files changed relative to merge-base with diff preview
 				local merge_base = vim.fn.systemlist("git merge-base HEAD main")[1]
 				if merge_base and merge_base ~= "" then
-					builtin.find_files({
-						prompt_title = "Changed Files (vs merge-base " .. merge_base:sub(1, 7) .. ")",
-						find_command = { "git", "diff", "--name-only", merge_base },
-					})
+					pickers
+						.new({}, {
+							prompt_title = "Changed Files (vs merge-base " .. merge_base:sub(1, 7) .. ")",
+							finder = finders.new_oneshot_job({ "git", "diff", "--name-only", merge_base }),
+							sorter = conf.file_sorter({}),
+							previewer = previewers.new_termopen_previewer({
+								get_command = function(entry)
+									return { "git", "diff", merge_base, "--", entry.value }
+								end,
+							}),
+						})
+						:find()
 				else
 					vim.notify("Could not determine merge-base", vim.log.levels.WARN)
 					builtin.git_status()
