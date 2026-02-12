@@ -29,9 +29,7 @@ return {
 							sorter = conf.file_sorter({}),
 							previewer = previewers.new_termopen_previewer({
 								title = "Git File Diff Preview",
-								get_command = function(entry)
-									return { "git", "--no-pager", "diff", merge_base, "--", entry.value }
-								end,
+								get_command = function(entry) return { "git", "--no-pager", "diff", merge_base, "--", entry.value } end,
 							}),
 						})
 						:find()
@@ -84,7 +82,6 @@ return {
 
 		telescope.load_extension("fzf")
 
-		-- Keymaps
 		vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Files" })
 		vim.keymap.set("n", "<leader>ft", builtin.live_grep, { desc = "Text (grep)" })
 		vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Recent" })
@@ -93,6 +90,6 @@ return {
 		vim.keymap.set("n", "<leader>fc", builtin.commands, { desc = "Commands" })
 		vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "Diagnostics" })
 		vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, { desc = "Document symbols" })
-		vim.keymap.set("n", "<leader>fg", git_status_picker, { desc = "Git status" })
+		vim.keymap.set("n", "<leader>fg", git_status_picker, { desc = "Git files" })
 	end,
 }
