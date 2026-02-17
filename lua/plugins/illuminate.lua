@@ -6,6 +6,9 @@ return {
 		illuminate.configure({
 			providers = { "lsp", "treesitter", "regex" },
 			delay = 100,
+			filetypes_denylist = {
+				"snacks_dashboard",
+			},
 		})
 
 		vim.api.nvim_create_autocmd("BufEnter", {
