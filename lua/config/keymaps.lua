@@ -39,9 +39,7 @@ map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Close" })
 map("n", "<leader>bh", "<cmd>BufferLineCloseLeft<cr>", { desc = "Delete to the left" })
 map("n", "<leader>bl", "<cmd>BufferLineCloseRight<cr>", { desc = "Delete to the right" })
 
--- Centered scrolling
-map("n", "<C-d>", "<C-d>zz", { desc = "Scroll down centered" })
-map("n", "<C-u>", "<C-u>zz", { desc = "Scroll up centered" })
+-- Centered search navigation
 map("n", "n", "nzzzv", { desc = "Next search result centered" })
 map("n", "N", "Nzzzv", { desc = "Previous search result centered" })
 
