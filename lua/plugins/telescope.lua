@@ -15,12 +15,13 @@ return {
 		local conf = require("telescope.config").values
 		local previewers = require("telescope.previewers")
 		local builtin = require("telescope.builtin")
+		local git = require("config.git")
 
 		-- Git status picker with merge-base support
 		local function git_status_picker()
 			if vim.g.gitsigns_merge_base then
 				-- Show files changed relative to merge-base with diff preview
-				local merge_base = vim.fn.systemlist("git merge-base HEAD main")[1]
+				local merge_base = vim.fn.systemlist("git merge-base HEAD " .. git.default_branch())[1]
 				if merge_base and merge_base ~= "" then
 					pickers
 						.new({}, {
