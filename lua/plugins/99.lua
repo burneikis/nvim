@@ -34,7 +34,6 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<leader>9f", function() _99.fill_in_function() end, { desc = "Fill in function" })
 		vim.keymap.set("v", "<leader>99", function() _99.visual_prompt() end, { desc = "Visual prompt" })
 		vim.keymap.set({ "v", "n" }, "<leader>9s", function() _99.stop_all_requests() end, { desc = "Stop all requests" })
 
