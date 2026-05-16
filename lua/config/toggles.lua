@@ -1,4 +1,5 @@
 local M = {}
+local git = require("config.git")
 
 local function toggle_desc(base, is_enabled)
 	return function()
@@ -40,11 +41,12 @@ map("n", "<leader>tm", function()
 		vim.g.gitsigns_merge_base = false
 		vim.notify("Gitsigns base: reset to index (default)")
 	else
-		local merge_base = vim.fn.systemlist("git merge-base HEAD main")[1]
+		local branch = git.default_branch()
+		local merge_base = vim.fn.systemlist("git merge-base HEAD " .. branch)[1]
 		if merge_base and merge_base ~= "" then
 			gs.change_base(merge_base, true)
 			vim.g.gitsigns_merge_base = true
-			vim.notify("Gitsigns base: merge-base with main (" .. merge_base:sub(1, 7) .. ")")
+			vim.notify("Gitsigns base: merge-base with " .. branch .. " (" .. merge_base:sub(1, 7) .. ")")
 		else
 			vim.notify("Could not determine merge-base", vim.log.levels.WARN)
 		end
@@ -70,7 +72,7 @@ map("n", "<leader>td", function()
 		vim.notify("Diff view closed")
 	else
 		if vim.g.gitsigns_merge_base then
-			local merge_base = vim.fn.systemlist("git merge-base HEAD main")[1]
+			local merge_base = vim.fn.systemlist("git merge-base HEAD " .. git.default_branch())[1]
 			if merge_base and merge_base ~= "" then
 				gs.diffthis(merge_base)
 				vim.notify("Diff view: merge-base (" .. merge_base:sub(1, 7) .. ")")
